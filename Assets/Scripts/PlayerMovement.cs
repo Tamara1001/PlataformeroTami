@@ -39,8 +39,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Ground Detection")]
     public LayerMask groundLayer;
     public LayerMask wallLayer;
-    [Tooltip("Offset to the character's feet. -1 represents the bottom of a default Unity Capsule of height 2.")]
-    public float feetOffset = -1f;
     public float groundCheckRadius = 0.4f;
     public float groundCheckDistance = 0.1f;
     public float maxSlopeAngle = 45f;
@@ -245,8 +243,7 @@ public class PlayerMovement : MonoBehaviour
     private void CheckGroundAndWalls()
     {
         // 1. SphereCast for accurate volume-based ground detection
-        Vector3 feetPos = transform.position + Vector3.up * feetOffset;
-        Vector3 checkOrigin = feetPos + Vector3.up * (groundCheckRadius + 0.05f);
+        Vector3 checkOrigin = transform.position + Vector3.up * (groundCheckRadius + 0.05f);
         
         isGrounded = Physics.SphereCast(checkOrigin, groundCheckRadius, Vector3.down, out RaycastHit groundHit, groundCheckDistance, groundLayer);
 
@@ -285,8 +282,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool OnSlope()
     {
-        Vector3 feetPos = transform.position + Vector3.up * feetOffset;
-        if (Physics.Raycast(feetPos + Vector3.up * 0.1f, Vector3.down, out slopeHit, 0.3f, groundLayer))
+        if (Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, out slopeHit, groundCheckRadius + 0.5f, groundLayer))
         {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
@@ -300,8 +296,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Visualization inside Unity Scene View
         Gizmos.color = Color.green;
-        Vector3 feetPos = transform.position + Vector3.up * feetOffset;
-        Vector3 checkOrigin = feetPos + Vector3.up * (groundCheckRadius + 0.05f);
+        Vector3 checkOrigin = transform.position + Vector3.up * (groundCheckRadius + 0.05f);
         Gizmos.DrawWireSphere(checkOrigin - Vector3.up * groundCheckDistance, groundCheckRadius);
     }
 }
