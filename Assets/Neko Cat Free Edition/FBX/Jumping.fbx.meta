@@ -1,0 +1,235 @@
+fileFormatVersion: 2
+guid: fbffa1136cd14fb4f925e2b2c16a71b2
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: Jumping(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigPelvis
+      parentName: Jumping(Clone)
+      position: {x: 0.0000000055879354, y: 0.3422625, z: -0.015792608}
+      rotation: {x: 0.40688443, y: -0.4690878, z: -0.5289028, w: 0.5785011}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigLLeg1
+      parentName: RigPelvis
+      position: {x: -0, y: 0, z: 0.197525}
+      rotation: {x: -0.037559163, y: 0.99778676, z: 0.031191614, w: 0.045144077}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigLLeg2
+      parentName: RigLLeg1
+      position: {x: -0.157476, y: 0, z: 0}
+      rotation: {x: 0.14546414, y: 0.049806453, z: 0.31261557, w: 0.9373532}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigLLegAnkle
+      parentName: RigLLeg2
+      position: {x: -0.126265, y: 0, z: 0}
+      rotation: {x: -0.08131034, y: -0.043349307, z: -0.6139516, w: 0.783947}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigLLegFoot1
+      parentName: RigLLegAnkle
+      position: {x: -0.100729994, y: 0, z: 0}
+      rotation: {x: -0.00050795503, y: 0.0013068534, z: -0.36222854, w: 0.93208826}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigRLeg1
+      parentName: RigPelvis
+      position: {x: -0, y: 0, z: -0.197525}
+      rotation: {x: 0.10300852, y: 0.98112696, z: -0.076952204, w: -0.14442167}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigRLeg2
+      parentName: RigRLeg1
+      position: {x: -0.157476, y: 0, z: 0}
+      rotation: {x: 0.049335, y: -0.06121877, z: 0.17450903, w: 0.98151153}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigRLegAnkle
+      parentName: RigRLeg2
+      position: {x: -0.126265, y: 0, z: 0}
+      rotation: {x: -0.04004891, y: -0.109546244, z: -0.5863217, w: 0.8016375}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigRLegFoot1
+      parentName: RigRLegAnkle
+      position: {x: -0.100729994, y: 0, z: 0}
+      rotation: {x: 0.00017743093, y: -0.00045654422, z: -0.3621898, w: 0.93210423}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigSpine1
+      parentName: RigPelvis
+      position: {x: -0.031473998, y: -0.018266, z: 0}
+      rotation: {x: 0.061830394, y: -0.0066289417, z: -0.14974982, w: 0.9867665}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigSpine2
+      parentName: RigSpine1
+      position: {x: -0.139266, y: 0, z: 0}
+      rotation: {x: 0.008981333, y: 0.012932844, z: 0.05849391, w: 0.9981636}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigSpine3
+      parentName: RigSpine2
+      position: {x: -0.12968199, y: 0, z: 0}
+      rotation: {x: 0.010925128, y: 0.03328932, z: 0.033063065, w: 0.99883896}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigRibcage
+      parentName: RigSpine3
+      position: {x: -0.18819, y: 0, z: 0}
+      rotation: {x: 0.12111765, y: 0.007818592, z: -0.19231524, w: 0.9737989}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigLArmCollarbone
+      parentName: RigRibcage
+      position: {x: -0, y: 0, z: 0.039348}
+      rotation: {x: -0.013363225, y: 0.7828786, z: -0.025416177, w: 0.6215116}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigLArm1
+      parentName: RigLArmCollarbone
+      position: {x: -0.217819, y: 0, z: 0}
+      rotation: {x: -0.14971194, y: -0.13071921, z: -0.07492534, w: 0.97718215}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigLArm2
+      parentName: RigLArm1
+      position: {x: -0.22031601, y: 0, z: 0}
+      rotation: {x: 0.03786945, y: -0.014307005, z: -0.024424791, w: 0.9988817}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigLArmPalm
+      parentName: RigLArm2
+      position: {x: -0.18897898, y: 0, z: 0}
+      rotation: {x: -0.70692295, y: -0.0035082023, z: 0.029110186, w: 0.70668256}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigRArmCollarbone
+      parentName: RigRibcage
+      position: {x: -0, y: 0, z: -0.039348}
+      rotation: {x: 0.008168608, y: -0.8058403, z: -0.052760236, w: 0.5897212}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigRArm1
+      parentName: RigRArmCollarbone
+      position: {x: -0.217819, y: 0, z: 0}
+      rotation: {x: 0.036651425, y: 0.09200606, z: 0.12391474, w: 0.98733824}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigRArm2
+      parentName: RigRArm1
+      position: {x: -0.22031601, y: 0, z: 0}
+      rotation: {x: 0.05696681, y: 0.012776865, z: -0.028677266, w: 0.99788237}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigRArmPalm
+      parentName: RigRArm2
+      position: {x: -0.18897898, y: 0, z: 0}
+      rotation: {x: 0.70692295, y: 0.0035082023, z: 0.029110186, w: 0.70668256}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigNeck1
+      parentName: RigRibcage
+      position: {x: -0.023452, y: -0.00568, z: 0}
+      rotation: {x: -0.003666985, y: -0.0009201307, z: -0.043545064, w: 0.99904436}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigNeck2
+      parentName: RigNeck1
+      position: {x: -0.050647, y: 0, z: 0}
+      rotation: {x: -0.0036244607, y: -0.001075921, z: 0.025874894, w: 0.99965805}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigHead
+      parentName: RigNeck2
+      position: {x: -0.056213003, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0.04271702, w: 0.9990872}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

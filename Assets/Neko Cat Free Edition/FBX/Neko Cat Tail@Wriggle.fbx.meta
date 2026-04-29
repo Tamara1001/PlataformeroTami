@@ -1,7 +1,14 @@
 fileFormatVersion: 2
 guid: 8542a86062a794f488cd1df46d40505b
+AssetOrigin:
+  serializedVersion: 1
+  productId: 362428
+  packageName: FREE Neko Cat Cute Pro Series
+  packageVersion: 1.0
+  assetPath: Assets/Neko Cat Free Edition/FBX/Neko Cat Tail@Wriggle.fbx
+  uploadId: 866638
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24200
   internalIDToNameTable: []
   externalObjects: {}
   materials:
@@ -16,15 +23,13 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -87,6 +92,9 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -111,7 +119,52 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: Neko Cat Tail@Wriggle(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tail
+      parentName: Neko Cat Tail@Wriggle(Clone)
+      position: {x: -0, y: 0, z: -0.00000006179377}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Rig
+      parentName: Neko Cat Tail@Wriggle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.5000001, y: -0.50000006, z: -0.4999999, w: 0.49999997}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigHub
+      parentName: Neko Cat Tail@Wriggle(Clone)
+      position: {x: 2.522234e-14, y: 0.4931682, z: -0.000000080347306}
+      rotation: {x: 0.5000001, y: -0.50000006, z: -0.4999999, w: 0.49999997}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigTail1
+      parentName: RigHub
+      position: {x: 0.08144733, y: -0.09835086, z: 0.00000001914961}
+      rotation: {x: 0.008807569, y: 0.000179708, z: 0.21500018, w: 0.97657436}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigTail2
+      parentName: RigTail1
+      position: {x: -0.1435382, y: 0, z: -2.9802322e-10}
+      rotation: {x: 0.011107138, y: -0.018263139, z: -0.15637337, w: 0.9874667}
+      scale: {x: 0.9999998, y: 0.99999994, z: 1}
+    - name: RigTail3
+      parentName: RigTail2
+      position: {x: -0.15169735, y: 0.000000038146972, z: 5.9604643e-10}
+      rotation: {x: -0.020960122, y: 0.016468387, z: -0.1194632, w: 0.99248075}
+      scale: {x: 0.9999995, y: 0.99999964, z: 0.9999999}
+    - name: RigTail4
+      parentName: RigTail3
+      position: {x: -0.11634395, y: 0.000000019073486, z: 0}
+      rotation: {x: -0.06089253, y: 0.07474818, z: -0.09650148, w: 0.99065244}
+      scale: {x: 0.99999946, y: 0.9999994, z: 0.9999999}
+    - name: RigTail5
+      parentName: RigTail4
+      position: {x: -0.09455185, y: 0.000000038146972, z: 0.0000000047683715}
+      rotation: {x: -0.05595507, y: 0.080843836, z: -0.04777117, w: 0.9940077}
+      scale: {x: 0.9999988, y: 0.9999988, z: 0.99999976}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -122,7 +175,7 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
@@ -136,10 +189,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 362428
-  packageName: FREE Neko Cat Cute Pro Series
-  packageVersion: 1.0
-  assetPath: Assets/Neko Cat Free Edition/FBX/Neko Cat Tail@Wriggle.fbx
-  uploadId: 866638
