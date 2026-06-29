@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,6 +30,26 @@ public class UIManager : MonoBehaviour
              "si no hay una sesión activa (GameManager.HasActiveSession == false).")]
     [SerializeField] private Button continueButton;
 
+    [Header("HUD — Textos en pantalla")]
+    [Tooltip("Texto que muestra el tiempo de sesión mientras se juega (formato MM:SS).")]
+    [SerializeField] private TextMeshProUGUI _hudTimeText;
+
+    [Tooltip("Texto que muestra la cantidad de monedas actuales en el HUD.")]
+    [SerializeField] private TextMeshProUGUI _hudCoinsText;
+
+    [Header("Victory Panel — Resultados de la sesión")]
+    [Tooltip("Tiempo total de la partida ganada.")]
+    [SerializeField] private TextMeshProUGUI _victoryFinalTimeText;
+
+    [Tooltip("Monedas recolectadas en la partida ganada.")]
+    [SerializeField] private TextMeshProUGUI _victoryFinalCoinsText;
+
+    [Tooltip("Mejor tiempo histórico guardado en PlayerPrefs.")]
+    [SerializeField] private TextMeshProUGUI _victoryBestTimeText;
+
+    [Tooltip("Mayor cantidad de monedas histórica guardada en PlayerPrefs.")]
+    [SerializeField] private TextMeshProUGUI _victoryMaxCoinsText;
+
     // -------------------------------------------------------------------------
     // Ciclo de Vida de Unity
     // -------------------------------------------------------------------------
@@ -53,6 +74,21 @@ public class UIManager : MonoBehaviour
         {
             ShowMainMenu();
         }
+    }
+
+    private void Update()
+    {
+        // HUD texts are only updated while actively playing.
+        // Checking the state here keeps the cost at ~0 in all other states.
+        if (GameManager.Instance == null ||
+            GameManager.Instance.CurrentState != GameManager.GameState.Playing)
+            return;
+
+        if (_hudTimeText != null)
+            _hudTimeText.text = GameManager.FormatTime(GameManager.Instance.SessionTime);
+
+        if (_hudCoinsText != null)
+            _hudCoinsText.text = GameManager.Instance.CurrentCoins.ToString();
     }
 
     // -------------------------------------------------------------------------
@@ -132,6 +168,32 @@ public class UIManager : MonoBehaviour
 
     private void ShowVictory()
     {
+        // ── Populate result texts BEFORE activating the panel so the player
+        //   never sees a single frame of stale/empty text.
+        if (GameManager.Instance != null)
+        {
+            float sessionTime = GameManager.Instance.SessionTime;
+            int   sessionCoins = GameManager.Instance.CurrentCoins;
+
+            // Session results
+            if (_victoryFinalTimeText  != null)
+                _victoryFinalTimeText.text  = GameManager.FormatTime(sessionTime);
+            if (_victoryFinalCoinsText != null)
+                _victoryFinalCoinsText.text = sessionCoins.ToString();
+
+            // All-time records read directly from PlayerPrefs
+            float savedBestTime = PlayerPrefs.GetFloat(GameManager.PrefKeyBestTime, float.MaxValue);
+            int   savedMaxCoins = PlayerPrefs.GetInt  (GameManager.PrefKeyMaxCoins, 0);
+
+            if (_victoryBestTimeText != null)
+                _victoryBestTimeText.text = savedBestTime == float.MaxValue
+                    ? "--:--"
+                    : GameManager.FormatTime(savedBestTime);
+
+            if (_victoryMaxCoinsText != null)
+                _victoryMaxCoinsText.text = savedMaxCoins.ToString();
+        }
+
         mainMenuPanel?.SetActive(false);
         playingHUDPanel?.SetActive(false);
         pausePanel?.SetActive(false);

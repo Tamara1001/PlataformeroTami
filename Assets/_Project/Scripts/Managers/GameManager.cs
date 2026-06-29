@@ -68,6 +68,11 @@ public class GameManager : MonoBehaviour
     // Session State
     // -------------------------------------------------------------------------
 
+    // PlayerPrefs keys — defined once so UIManager and GameManager share the
+    // exact same string without risk of a typo mismatch.
+    public const string PrefKeyBestTime = "BestTime";
+    public const string PrefKeyMaxCoins = "MaxCoins";
+
     /// <summary>
     /// True while an active run exists in the loaded scene.
     /// Set to true inside <see cref="OnSceneLoaded"/> after a scene restart,
@@ -75,6 +80,19 @@ public class GameManager : MonoBehaviour
     /// Used by <see cref="UIManager"/> to gate the "Continue" button.
     /// </summary>
     public bool HasActiveSession { get; private set; }
+
+    /// <summary>Total coins collected in the current session.</summary>
+    public int CurrentCoins { get; private set; }
+
+    /// <summary>
+    /// Increments the session coin counter by <paramref name="amount"/>.
+    /// Called by <see cref="Platformer.Player.PlayerCollectibles"/> on every pickup.
+    /// </summary>
+    public void AddCoin(int amount = 1)
+    {
+        CurrentCoins += amount;
+        Debug.Log($"[GameManager] Monedas en sesión: {CurrentCoins}");
+    }
 
     // -------------------------------------------------------------------------
     // Unity Lifecycle
@@ -117,6 +135,7 @@ public class GameManager : MonoBehaviour
 
         _pendingRestart  = false;
         _sessionTimer    = 0f;
+        CurrentCoins     = 0;       // Reset coin counter for fresh session
         HasActiveSession = true;
 
         // Ensure time is running before broadcasting the Playing state.
@@ -159,11 +178,18 @@ public class GameManager : MonoBehaviour
                 _stateBeforePause = CurrentState;
                 Time.timeScale = 0f;
                 break;
-            case GameState.GameOver:
+
             case GameState.Victory:
                 HasActiveSession = false;
                 Time.timeScale = 0f;
+                TrySaveRecords();   // ← persist best time & max coins
                 break;
+
+            case GameState.GameOver:
+                HasActiveSession = false;
+                Time.timeScale = 0f;
+                break;
+
             default:
                 Time.timeScale = 1f;
                 break;
@@ -240,10 +266,62 @@ public class GameManager : MonoBehaviour
     // Accesos Públicos
     // -------------------------------------------------------------------------
 
-    /// <summary>
-    /// Devuelve los segundos transcurridos en la partida actual.
-    /// </summary>
+    /// <summary>Devuelve los segundos transcurridos en la partida actual.</summary>
     public float SessionTime => _sessionTimer;
+
+    // -------------------------------------------------------------------------
+    // Records — PlayerPrefs
+    // -------------------------------------------------------------------------
+
+    /// <summary>
+    /// Evaluates the just-completed session against saved records and
+    /// overwrites them when the player sets a new best.
+    /// <para>Best Time  = lowest value (faster run wins).</para>
+    /// <para>Max Coins  = highest value (more coins wins).</para>
+    /// Called exclusively from <see cref="ChangeState"/> on Victory.
+    /// </summary>
+    private void TrySaveRecords()
+    {
+        // ── Best Time (lower is better) ───────────────────────────────────────
+        // GetFloat returns the default (3rd arg) when the key doesn't exist,
+        // so float.MaxValue forces a save on the very first victory.
+        float savedBestTime = PlayerPrefs.GetFloat(PrefKeyBestTime, float.MaxValue);
+
+        if (_sessionTimer < savedBestTime)
+        {
+            PlayerPrefs.SetFloat(PrefKeyBestTime, _sessionTimer);
+            Debug.Log($"[GameManager] ¡Nuevo mejor tiempo! {FormatTime(_sessionTimer)} " +
+                      $"(anterior: {(savedBestTime == float.MaxValue ? "--:--" : FormatTime(savedBestTime))})");
+        }
+
+        // ── Max Coins (higher is better) ─────────────────────────────────────
+        int savedMaxCoins = PlayerPrefs.GetInt(PrefKeyMaxCoins, 0);
+
+        if (CurrentCoins > savedMaxCoins)
+        {
+            PlayerPrefs.SetInt(PrefKeyMaxCoins, CurrentCoins);
+            Debug.Log($"[GameManager] ¡Nuevo máximo de monedas! {CurrentCoins} " +
+                      $"(anterior: {savedMaxCoins})");
+        }
+
+        // Flush to disk immediately so data is not lost on a crash.
+        PlayerPrefs.Save();
+    }
+
+    // -------------------------------------------------------------------------
+    // Utilidades de Formato
+    // -------------------------------------------------------------------------
+
+    /// <summary>
+    /// Converts a raw float (seconds) into a "MM:SS" display string.
+    /// Shared by GameManager and UIManager to guarantee identical formatting.
+    /// </summary>
+    public static string FormatTime(float totalSeconds)
+    {
+        int minutes = Mathf.FloorToInt(totalSeconds / 60f);
+        int seconds = Mathf.FloorToInt(totalSeconds % 60f);
+        return $"{minutes:00}:{seconds:00}";
+    }
 
     // -------------------------------------------------------------------------
     // Player Registry (FIX-2)

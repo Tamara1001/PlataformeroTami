@@ -371,5 +371,57 @@ namespace Platformer.Player
             Gizmos.DrawWireSphere(checkOrigin - Vector3.up * _groundCheckDistance, _groundCheckRadius);
         }
 #endif
+
+        // ─────────────────────────────────────────────────────────────────────
+        //  POWER-UP HELPERS  (called by PlayerCollectibles via Coroutine)
+        //
+        //  Design note: the original values are cached the first time Apply is
+        //  called, so if the player grabs the same power-up twice while it is
+        //  still active the Coroutine simply restarts and Revert still knows
+        //  what the true baseline value is.
+        // ─────────────────────────────────────────────────────────────────────
+
+        // ── Speed Boost ───────────────────────────────────────────────────────
+
+        private float _baseMaxSpeed = -1f;   // -1 signals "not cached yet"
+
+        /// <summary>Multiplies _maxSpeed by the given factor. Safe to call repeatedly.</summary>
+        public void ApplySpeedBoost(float multiplier)
+        {
+            // Only cache the real base value once so re-activating doesn't compound
+            if (_baseMaxSpeed < 0f) _baseMaxSpeed = _maxSpeed;
+            _maxSpeed = _baseMaxSpeed * multiplier;
+        }
+
+        /// <summary>Restores _maxSpeed to its original Inspector value.</summary>
+        public void RevertSpeedBoost()
+        {
+            if (_baseMaxSpeed >= 0f)
+            {
+                _maxSpeed    = _baseMaxSpeed;
+                _baseMaxSpeed = -1f;         // reset cache flag
+            }
+        }
+
+        // ── Jump Boost ────────────────────────────────────────────────────────
+
+        private float _baseJumpForce = -1f;  // -1 signals "not cached yet"
+
+        /// <summary>Multiplies _jumpForce by the given factor. Safe to call repeatedly.</summary>
+        public void ApplyJumpBoost(float multiplier)
+        {
+            if (_baseJumpForce < 0f) _baseJumpForce = _jumpForce;
+            _jumpForce = _baseJumpForce * multiplier;
+        }
+
+        /// <summary>Restores _jumpForce to its original Inspector value.</summary>
+        public void RevertJumpBoost()
+        {
+            if (_baseJumpForce >= 0f)
+            {
+                _jumpForce    = _baseJumpForce;
+                _baseJumpForce = -1f;
+            }
+        }
     }
 }

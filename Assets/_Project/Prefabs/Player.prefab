@@ -17,8 +17,6 @@ GameObject:
   - component: {fileID: 8850581131411465045}
   - component: {fileID: 8204490844758943085}
   - component: {fileID: 6511616741426195576}
-  - component: {fileID: 3664249351010105893}
-  - component: {fileID: 5928492640989960377}
   - component: {fileID: 2106348614680406519}
   m_Layer: 0
   m_Name: Player
@@ -244,39 +242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
   maxHealth: 100
---- !u!114 &3664249351010105893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5765787081068217714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 734b08ac1868b3049b8b890e795d8350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TopDownShooter.Player.PlayerResourceComponent
-  _maxMana: 100
-  _manaRegenPerSecond: 5
-  _maxEnergy: 100
-  _energyRegenPerSecond: 15
---- !u!114 &5928492640989960377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5765787081068217714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b68d0b47fb8fe2f4a8ac66d8cf51047f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerHUD
-  playerHealth: {fileID: 6511616741426195576}
-  playerResources: {fileID: 3664249351010105893}
-  healthBarFill: {fileID: 0}
-  manaBarFill: {fileID: 0}
-  energyBarFill: {fileID: 0}
 --- !u!114 &2106348614680406519
 MonoBehaviour:
   m_ObjectHideFlags: 0
